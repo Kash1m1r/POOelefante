@@ -1,8 +1,10 @@
 <?php
+//Método abstrato faz com que o método seja obrigatório para que seja herdada
+
 
 namespace Alura\Banco\Modelo\Conta;
 
-class Conta {
+abstract class Conta {
     private $titular;
     protected $saldo;
     private static $numeroDeContas = 0;
@@ -41,16 +43,6 @@ class Conta {
         $this->saldo += $valorADepositar;
     }
 
-    public function transfere(float $valorATransferir, Conta $contaDestino):void{
-        if ($valorATransferir > $this->saldo) {
-            echo "Saldo indisponível";
-            return;
-        }
-
-        $this->sacar($valorATransferir);
-        $contaDestino->depositar($valorATransferir);
-    }
-
     public function recuperaSaldo():float{
         return $this->saldo;
     }
@@ -67,7 +59,6 @@ class Conta {
         return self::$numeroDeContas;
     }
 
-    protected function percentualTarifa():float{
-        return 0.05;
-    }
+    abstract protected function percentualTarifa():float;
+    
 }
