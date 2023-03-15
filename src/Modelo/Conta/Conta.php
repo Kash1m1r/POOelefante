@@ -4,7 +4,7 @@ namespace Alura\Banco\Modelo\Conta;
 
 class Conta {
     private $titular;
-    private $saldo;
+    protected $saldo;
     private static $numeroDeContas = 0;
     private $tipo;
 
@@ -21,11 +21,8 @@ class Conta {
 
     public function saca(float $valorASacar):void{
 
-        if($this->tipo === 1){
-            $tarifaSaque = $valorASacar * 0.05;
-        }else{
-            $tarifaSaque = $valorASacar * 0.02;
-        }
+        $tarifaSaque = $valorASacar * $this->percentualTarifa();
+
         $valorDoSaque = $valorASacar + $tarifaSaque;
         if ($valorDoSaque > $this->saldo) {
             echo "Saldo indisponível";
@@ -68,5 +65,9 @@ class Conta {
 
     public static function recuperaNumeroDeContas():int{
         return self::$numeroDeContas;
+    }
+
+    protected function percentualTarifa():float{
+        return 0.05;
     }
 }
