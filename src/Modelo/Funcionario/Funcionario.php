@@ -1,6 +1,8 @@
 <?php
 
-namespace Alura\Banco\Modelo;
+namespace Alura\Banco\Modelo\Funcionario;
+
+use Alura\Banco\Modelo\{Pessoa, CPF};
 
 class Funcionario extends Pessoa {
     private $cargo;
@@ -25,6 +27,9 @@ class Funcionario extends Pessoa {
         return $this->salario;
     }
     public function calculaBonificacao():float{
+        if($this->cargo === 'Gerente'){
+            return $this->salario;
+        }
         return $this->salario * 0.01;
     }
 }
