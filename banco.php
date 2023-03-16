@@ -1,5 +1,5 @@
 <?php
-
+//abstração, encapsulamento, Herança, Polimorfismo
 require_once 'autoload.php';
 
 use Alura\Banco\Modelo\Conta\{Titular, Conta};
