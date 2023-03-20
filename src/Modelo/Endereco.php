@@ -30,4 +30,13 @@ class Endereco {
     public function recuperaNumero():string{
         return $this->numero;
     }
+
+    public function __toString():string{
+        return ", {$this->rua}, {$this->bairro}, {$this->cidade}, {$this->numero}";
+    }
+
+    public function __get(string $nomeAtributo){
+        $metodo = 'recupera' . ucfirst($nomeAtributo);
+        return $this->$metodo();
+    }
 }
